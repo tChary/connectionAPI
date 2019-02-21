@@ -77,7 +77,15 @@ router.post(`/`, (req, res) => {
           doRelease(connection);
           return;
         }
-        res.send(result);
+        let resultArray = result.rows.map((row) => {
+          let rowObj = {};
+          result.metaData.forEach((item, index) => {
+            let keyName = item.name;
+            rowObj[keyName] = row[index];
+          });
+          return rowObj;
+        });
+        res.send(resultArray);
         doRelease(connection);
       })
     });
