@@ -77,12 +77,13 @@ router.post(`/`, (req, res) => {
 
     connection.execute(insertString, (err, result) => {
       if (err) {
-        res.status(500).send(err);
+        res.status(202).send(err);
         doRelease(connection);
         return;
       }
       connection.commit((err) => {
         if (err) {
+          res.status(202).send(err);
           res.send(err);
           doRelease(connection);
           return;
