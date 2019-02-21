@@ -91,7 +91,7 @@ router.post(`/`, (req, res) => {
         if (err) {
           let replyObj = {};
           replyObj.error = err;
-          replyObj.status = `Record Not Inserted`;
+          replyObj.status = `Record Not Inserted - Commit`;
           res.status(202).send(replyObj);
           doRelease(connection);
           return;
