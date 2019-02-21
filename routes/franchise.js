@@ -135,7 +135,7 @@ router.patch(`/update`, (req, res) => {
         doRelease(connection);
         return;
       }
-      if (result.rows.length === 0) {
+      if (result.rows.length !== 1) {
         res.status(404);
         doRelease(connection);
         return;
