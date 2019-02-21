@@ -80,13 +80,19 @@ router.post(`/`, (req, res) => {
 
     connection.execute(insertString, (err, result) => {
       if (err) {
-        res.status(500).send(err);
+        let replyObj = {};
+        replyObj.error = err;
+        replyObj.status = `Record Not Inserted`;
+        res.status(202).send(replyObj);
         doRelease(connection);
         return;
       }
       connection.commit((err) => {
         if (err) {
-          res.status(500).send(err);
+          let replyObj = {};
+          replyObj.error = err;
+          replyObj.status = `Record Not Inserted`;
+          res.status(202).send(replyObj);
           doRelease(connection);
           return;
         }

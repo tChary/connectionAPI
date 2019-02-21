@@ -41,8 +41,13 @@ router.get(`/`, (req, res) => {
 router.post(`/`, (req, res) => {
 
   let USER_ID = req.body.USER_ID;
-  let FIRST_NAME = req.body.FIRST_NAME;
-  let LAST_NAME = req.body.LAST_NAME;
+
+  let nameArr = req.body.LAST_NAME.split(`'`);
+  let FIRST_NAME = nameArr.join(`''`);;
+
+  nameArr = req.body.LAST_NAME.split(`'`);
+  let LAST_NAME = nameArr.join(`''`);
+
   let PHONE_NUMBER = req.body.PHONE_NUMBER;
   let HOME_ADDRESS = req.body.HOME_ADDRESS;
   let EMAIL_ADDRESS = req.body.EMAIL_ADDRESS;
@@ -77,14 +82,19 @@ router.post(`/`, (req, res) => {
 
     connection.execute(insertString, (err, result) => {
       if (err) {
-        res.status(202).send(err);
+        let replyObj = {};
+        replyObj.error = err;
+        replyObj.status = `Record Not Inserted`;
+        res.status(202).send(replyObj);
         doRelease(connection);
         return;
       }
       connection.commit((err) => {
         if (err) {
-          res.status(202).send(err);
-          res.send(err);
+          let replyObj = {};
+          replyObj.error = err;
+          replyObj.status = `Record Not Inserted`;
+          res.status(202).send(replyObj);
           doRelease(connection);
           return;
         }
