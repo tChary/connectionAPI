@@ -3,9 +3,8 @@
 Let's try to get the API spec here in this document...
 
 -----
+POST Request to /franchise
 ```
-POST Request to /franchise:
-
 {
 	"FRANCHISE_ID" : <integer>,
 	"STREET_ADDRES" : <string>,
@@ -22,33 +21,33 @@ POST Request to /franchise:
 	"CUSTOMER_DISHES" : <integer>,
 	"KITCHEN_DISHES" : <integer>
 }
-
-Response
-
+```
+Response:
+```
 {
-“response”:“Record Created”
+    "rowsAffected": 1
 }
 ```
 -----
+POST Request to /users
 ```
-Request :
-
 {
-    “franchise”:“1",
-    “chairs”:“7",
-    “decore_items”:“21",
-    “napkins”:“”,
-    “pizza_cutters”:“20",
-    “pie_tray”:“10",
-    “oven”:“1",
-    “vent_hood”:“”,
-    “ingredient_tray”:“”
+	"USER_ID" : <integer>,
+	"FIRST_NAME" : <string>,
+	"LAST_NAME" : <string>,
+	"PHONE_NUMBER" : <string>,
+	"HOME_ADDRESS" : <string>,
+	"EMAIL_ADDRESS" : <string>,
+	"TAX_ID" : <string>,
+	"USER_CITY" : <string>,
+	"USER_STATE" : <string>,
+	"USER_ZIP" : <string>,
+	"FRANCHISE_ID" : <integer>
 }
-
-
-Response
-
+```
+Response:
+```
 {
-“response”:“Data Submitted”
+  "rowsAffected": 1
 }
 ```
