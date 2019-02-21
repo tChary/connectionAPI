@@ -214,8 +214,8 @@ router.patch(`/update`, (req, res) => {
             let replyObj = {};
             replyObj.error = err;
             replyObj.status = `Update did not complete.`;
-            res.send(err);
-            doRelease(replyObj);
+            res.send(replyObj);
+            doRelease(connection);
             return;
           }
           connection.commit((err) => {
