@@ -62,6 +62,9 @@ router.post(`/`, (req, res) => {
 
     let insertString = `INSERT INTO users (USER_ID, FIRST_NAME, LAST_NAME, PHONE_NUMBER, HOME_ADDRESS, EMAIL_ADDRESS, TAX_ID, USER_CITY, USER_STATE, USER_ZIP, FRANCHISE_ID) VALUES (${USER_ID}, ${FIRST_NAME}, ${LAST_NAME}, ${PHONE_NUMBER}, ${HOME_ADDRESS}, ${EMAIL_ADDRESS}, ${TAX_ID}, ${USER_CITY}, ${USER_STATE}, ${USER_ZIP}, ${FRANCHISE_ID})`;
 
+    console.log(`insertString`);
+    console.log(insertString);
+
     connection.execute(insertString, (err, result) => {
       if (err) {
         res.send(err);
