@@ -13,13 +13,13 @@ router.get(`/`, (req, res) => {
     connectString: dbConfig.connectString
   }, (err, connection) => {
     if (err) {
-      res.send(err);
+      res.status(500).send(err);
       doRelease(connection);
       return;
     }
     connection.execute(`SELECT * FROM users`, [], (err, result) => {
       if (err) {
-        res.send(err);
+        res.status(500).send(err);
         doRelease(connection);
         return;
       }
@@ -63,7 +63,7 @@ router.post(`/`, (req, res) => {
     connectString: dbConfig.connectString
   }, (err, connection) => {
     if (err) {
-      res.send(err);
+      res.status(500).send(err);
       doRelease(connection);
       return;
     }
@@ -77,7 +77,7 @@ router.post(`/`, (req, res) => {
 
     connection.execute(insertString, (err, result) => {
       if (err) {
-        res.send(err);
+        res.status(500).send(err);
         doRelease(connection);
         return;
       }
