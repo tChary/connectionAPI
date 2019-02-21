@@ -86,4 +86,14 @@ router.post(`/`, (req, res) => {
     });
   });
 });
+
+
+function doRelease(connection) {
+  connection.close(
+    function (err) {
+      if (err)
+        console.error(err.message);
+    });
+}
+
 module.exports = router;
