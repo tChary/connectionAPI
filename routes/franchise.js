@@ -101,7 +101,9 @@ router.post(`/`, (req, res) => {
           doRelease(connection);
           return;
         }
-        res.send(result);
+        let replyObj = {};
+        replyObj.rowsAffected = result.outBinds.franchise[0];
+        res.send(replyObj);
         doRelease(connection);
       });
     });
