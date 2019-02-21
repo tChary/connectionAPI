@@ -37,7 +37,7 @@ router.get(`/`, (_req, res) => {
   });
 });
 
-/* GET franchise listings. */
+/* GET a specific franchise listings. */
 router.get(`/:id`, (req, res) => {
   let franchiseID = parseInt(req.params.id);
   if (isNaN(franchiseID)) {
@@ -140,7 +140,7 @@ router.post(`/`, (req, res) => {
           return;
         }
         let replyObj = {};
-        replyObj.rowsAffected = result.outBinds.franchise[0];
+        replyObj.rowsAffected = `${result.outBinds.franchise[0]}`;
         res.send(replyObj);
         doRelease(connection);
       });
