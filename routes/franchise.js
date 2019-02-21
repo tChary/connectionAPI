@@ -104,7 +104,7 @@ router.post(`/`, (req, res) => {
 });
 
 /* GET franchise listings. */
-router.patch(`/`, (req, res) => {
+router.patch(`/update`, (req, res) => {
 
   if (!req.body.FRANCHISE_ID) {
     res.status(400).send(`Required data missing from request body.`);
