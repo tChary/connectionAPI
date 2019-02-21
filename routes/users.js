@@ -82,8 +82,6 @@ router.post(`/`, (req, res) => {
       })
     });
   });
-
-
 });
 
 function doRelease(connection) {
