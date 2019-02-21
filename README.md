@@ -4,16 +4,24 @@ Let's try to get the API spec here in this document...
 
 -----
 ```
-Request :
+POST Request to /franchise:
 
 {
-“name”:“raj”,
-“dateofbirth”:“12182003",
-“position”:“clerk”,
-“phone_number”:“1234567890",
-“franchise”:“1"
+	"FRANCHISE_ID" : <integer>,
+	"STREET_ADDRES" : <string>,
+	"ADDR_CITY" : <string>,
+	"ADDR_STATE" : <string>,
+	"ADDR_ZIP" : <integer>,
+	"CHAIRS" : <integer>,
+	"DECORE_ITEMS" : <integer>,
+	"NAPKIN_DISPENSORS" : <integer>,
+	"PIZZA_CUTTERS" : <integer>,
+	"PIE_TRAYS" : <integer>,
+	"OVER_MODEL" : <string>,
+	"VENT_HOOD_MODEL" : <string>,
+	"CUSTOMER_DISHES" : <integer>,
+	"KITCHEN_DISHES" : <integer>
 }
-
 
 Response
 
