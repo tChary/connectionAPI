@@ -71,14 +71,19 @@ router.post(`/`, (req, res) => {
       return;
     }
 
-    let insertString = `INSERT INTO franchise (STREET_ADDRES, ADDR_CITY, ADDR_STATE, ADDR_ZIP, CHAIRS, DECORE_ITEMS, NAPKIN_DISPENSORS, PIZZA_CUTTERS, PIE_TRAYS, OVER_MODEL, VENT_HOOD_MODEL, CUSTOMER_DISHES, KITCHEN_DISHES) VALUES ('${STREET_ADDRES}', '${ADDR_CITY}', '${ADDR_STATE}', ${ADDR_ZIP}, ${CHAIRS}, ${DECORE_ITEMS}, ${NAPKIN_DISPENSORS}, ${PIZZA_CUTTERS}, ${PIE_TRAYS}, '${OVER_MODEL}', '${VENT_HOOD_MODEL}', ${CUSTOMER_DISHES}, ${KITCHEN_DISHES})`;
+    let insertString = `INSERT INTO franchise (STREET_ADDRES, ADDR_CITY, ADDR_STATE, ADDR_ZIP, CHAIRS, DECORE_ITEMS, NAPKIN_DISPENSORS, PIZZA_CUTTERS, PIE_TRAYS, OVER_MODEL, VENT_HOOD_MODEL, CUSTOMER_DISHES, KITCHEN_DISHES) VALUES ('${STREET_ADDRES}', '${ADDR_CITY}', '${ADDR_STATE}', ${ADDR_ZIP}, ${CHAIRS}, ${DECORE_ITEMS}, ${NAPKIN_DISPENSORS}, ${PIZZA_CUTTERS}, ${PIE_TRAYS}, '${OVER_MODEL}', '${VENT_HOOD_MODEL}', ${CUSTOMER_DISHES}, ${KITCHEN_DISHES}) RETURNING FRANCHISE_ID INTO :franchise`;
 
     // eslint-disable-next-line no-console
     console.log(`insertString`);
     // eslint-disable-next-line no-console
     console.log(insertString);
 
-    connection.execute(insertString, (err, result) => {
+    connection.execute(insertString, {
+      franchise: {
+        type: oracledb.NUMBER,
+        dir: oracledb.BIND_OUT
+      }
+    }, (err, result) => {
       if (err) {
         let replyObj = {};
         replyObj.error = err;
