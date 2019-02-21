@@ -39,7 +39,7 @@ router.get(`/`, (_req, res) => {
 
 /* GET franchise listings. */
 router.get(`/:id`, (req, res) => {
-  let franchiseID = parseInt(res.params.id);
+  let franchiseID = parseInt(req.params.id);
   if (isNaN(franchiseID)) {
     res.status(400).send(`Franchise ID must be a number.`);
   }
