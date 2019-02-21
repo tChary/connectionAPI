@@ -105,6 +105,8 @@ router.post(`/`, (req, res) => {
   });
 });
 
+
+
 function doRelease(connection) {
   connection.close(
     function (err) {

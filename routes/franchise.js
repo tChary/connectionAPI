@@ -103,6 +103,50 @@ router.post(`/`, (req, res) => {
   });
 });
 
+/* GET franchise listings. */
+router.patch(`/`, (req, res) => {
+
+  if (!req.body.FRANCHISE_ID) {
+    res.status(400).send(`Required data missing from request body.`);
+    return;
+  }
+
+  let franchiseID = req.body.FRANCHISE_ID;
+
+  oracledb.getConnection({
+    user: dbConfig.dbuser,
+    password: dbConfig.dbpassword,
+    connectString: dbConfig.connectString
+  }, (err, connection) => {
+    if (err) {
+      res.send(err);
+      doRelease(connection);
+      return;
+    }
+
+    let queryString = `SELECT * FROM franchise WHERE FRANCHISE_ID=${franchiseID}`;
+
+    connection.execute(queryString, [], (err, result) => {
+      if (err) {
+        res.send(err);
+        doRelease(connection);
+        return;
+      }
+      if (result.rows.length === 0) {
+        res.status(404);
+        doRelease(connection);
+        return;
+      }
+      console.log(`result.rows[0]`);
+      console.log(result.rows[0]);
+      res.send(result);
+      doRelease(connection);
+    });
+  });
+});
+
+
+
 
 function doRelease(connection) {
   connection.close(
