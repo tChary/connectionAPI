@@ -71,8 +71,15 @@ router.post(`/`, (req, res) => {
         doRelease(connection);
         return;
       }
-      res.send(result);
-      doRelease(connection);
+      connection.commit((err) => {
+        if (err) {
+          res.send(err);
+          doRelease(connection);
+          return;
+        }
+        res.send(result);
+        doRelease(connection);
+      })
     });
   });
 
