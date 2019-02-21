@@ -130,6 +130,8 @@ router.patch(`/update`, (req, res) => {
     console.log(queryString);
 
     connection.execute(queryString, [], (err, result) => {
+      console.log(`result`);
+      console.log(result);
       if (err) {
         res.send(err);
         doRelease(connection);
