@@ -103,7 +103,7 @@ router.post(`/`, (req, res) => {
   });
 });
 
-/* GET franchise listings. */
+/* PATCH part of franchise listings. */
 router.patch(`/update`, (req, res) => {
 
   if (!req.body.FRANCHISE_ID) {
@@ -126,12 +126,7 @@ router.patch(`/update`, (req, res) => {
 
     let queryString = `SELECT * FROM franchise WHERE FRANCHISE_ID=${franchiseID}`;
 
-    console.log(`queryString`);
-    console.log(queryString);
-
     connection.execute(queryString, [], (err, result) => {
-      console.log(`result`);
-      console.log(result);
       if (err) {
         res.send(err);
         doRelease(connection);
@@ -142,10 +137,96 @@ router.patch(`/update`, (req, res) => {
         doRelease(connection);
         return;
       }
-      console.log(`result.rows[0]`);
-      console.log(result.rows[0]);
-      res.send(result);
-      doRelease(connection);
+      let resultObj = result.rows.map((row) => {
+        let rowObj = {};
+        result.metaData.forEach((item, index) => {
+          let keyName = item.name;
+          rowObj[keyName] = row[index];
+        });
+        return rowObj;
+      });
+
+      let valuesString = ``;
+
+      if (req.body.CHAIRS) {
+        resultObj.CHAIRS += parseInt(req.body.CHAIRS);
+        valuesString += `CHAIRS=${resultObj.CHAIRS}`;
+      }
+
+      if (req.body.DECORE_ITEMS) {
+        resultObj.DECORE_ITEMS += parseInt(req.body.DECORE_ITEMS);
+        if (valuesString) {
+          valuesString += `, DECORE_ITEMS=${resultObj.DECORE_ITEMS}`;
+        } else {
+          valuesString += `DECORE_ITEMS=${resultObj.DECORE_ITEMS}`;
+        }
+      }
+
+      if (req.body.NAPKIN_DISPENSORS) {
+        resultObj.NAPKIN_DISPENSORS += parseInt(req.body.NAPKIN_DISPENSORS);
+        if (valuesString) {
+          valuesString += `, NAPKIN_DISPENSORS=${resultObj.NAPKIN_DISPENSORS}`;
+        } else {
+          valuesString += `NAPKIN_DISPENSORS=${resultObj.NAPKIN_DISPENSORS}`;
+        }
+      }
+
+      if (req.body.PIZZA_CUTTERS) {
+        resultObj.PIZZA_CUTTERS += parseInt(req.body.PIZZA_CUTTERS);
+        if (valuesString) {
+          valuesString += `, PIZZA_CUTTERS=${resultObj.PIZZA_CUTTERS}`;
+        } else {
+          valuesString += `PIZZA_CUTTERS=${resultObj.PIZZA_CUTTERS}`;
+        }
+      }
+
+      if (req.body.PIE_TRAYS) {
+        resultObj.PIE_TRAYS += parseInt(req.body.PIE_TRAYS);
+        if (valuesString) {
+          valuesString += `, PIE_TRAYS=${resultObj.PIE_TRAYS}`;
+        } else {
+          valuesString += `PIE_TRAYS=${resultObj.PIE_TRAYS}`;
+        }
+      }
+
+      if (req.body.CUSTOMER_DISHES) {
+        resultObj.CUSTOMER_DISHES += parseInt(req.body.CUSTOMER_DISHES);
+        if (valuesString) {
+          valuesString += `, CUSTOMER_DISHES=${resultObj.CUSTOMER_DISHES}`;
+        } else {
+          valuesString += `CUSTOMER_DISHES=${resultObj.CUSTOMER_DISHES}`;
+        }
+      }
+
+      if (req.body.KITCHEN_DISHES) {
+        resultObj.KITCHEN_DISHES += parseInt(req.body.KITCHEN_DISHES);
+        if (valuesString) {
+          valuesString += `, KITCHEN_DISHES=${resultObj.KITCHEN_DISHES}`;
+        } else {
+          valuesString += `KITCHEN_DISHES=${resultObj.KITCHEN_DISHES}`;
+        }
+      }
+
+      if (valuesString) {
+        let updateString = `UPDATE franchise SET ${valuesString} WHERE FRANCHISE_ID=${franchiseID}`;
+        connection.execute(updateString, [], (err, result) => {
+          if (err) {
+            let replyObj = {};
+            replyObj.error = err;
+            replyObj.status = `Update did not complete.`
+            res.send(err);
+            doRelease(replyObj);
+            return;
+          }
+          res.send(result);
+          doRelease(connection);
+        });
+      } else {
+        console.log(`result.rows[0]`);
+        console.log(result.rows[0]);
+        res.send(result);
+        doRelease(connection);
+      }
     });
   });
 });
