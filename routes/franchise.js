@@ -6,7 +6,7 @@ const oracledb = require(`oracledb`);
 
 
 /* GET franchise listings. */
-router.get(`/`, (req, res) => {
+router.get(`/`, (_req, res) => {
   oracledb.getConnection({
     user: dbConfig.dbuser,
     password: dbConfig.dbpassword,
@@ -234,8 +234,6 @@ router.patch(`/update`, (req, res) => {
           });
         });
       } else {
-        console.log(`result.rows[0]`);
-        console.log(result.rows[0]);
         res.send(result);
         doRelease(connection);
       }

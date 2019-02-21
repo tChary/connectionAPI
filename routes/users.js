@@ -6,7 +6,7 @@ const oracledb = require(`oracledb`);
 
 
 /* GET users listing. */
-router.get(`/`, (req, res) => {
+router.get(`/`, (_req, res) => {
   oracledb.getConnection({
     user: dbConfig.dbuser,
     password: dbConfig.dbpassword,
