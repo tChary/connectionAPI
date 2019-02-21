@@ -137,7 +137,7 @@ router.patch(`/update`, (req, res) => {
         doRelease(connection);
         return;
       }
-      let resultObj = result.rows.map((row) => {
+      let resultArr = result.rows.map((row) => {
         let rowObj = {};
         result.metaData.forEach((item, index) => {
           let keyName = item.name;
@@ -145,6 +145,8 @@ router.patch(`/update`, (req, res) => {
         });
         return rowObj;
       });
+
+      let resultObj = resultArr[0];
 
       let valuesString = ``;
 
