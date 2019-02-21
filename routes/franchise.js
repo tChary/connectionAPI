@@ -126,6 +126,9 @@ router.patch(`/update`, (req, res) => {
 
     let queryString = `SELECT * FROM franchise WHERE FRANCHISE_ID=${franchiseID}`;
 
+    console.log(`queryString`);
+    console.log(queryString);
+
     connection.execute(queryString, [], (err, result) => {
       if (err) {
         res.send(err);
