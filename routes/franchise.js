@@ -37,6 +37,44 @@ router.get(`/`, (_req, res) => {
   });
 });
 
+/* GET franchise listings. */
+router.get(`/:id`, (req, res) => {
+  let franchiseID = parseInt(res.params.id);
+  if (isNaN(franchiseID)) {
+    res.status(400).send(`Franchise ID must be a number.`);
+  }
+  oracledb.getConnection({
+    user: dbConfig.dbuser,
+    password: dbConfig.dbpassword,
+    connectString: dbConfig.connectString
+  }, (err, connection) => {
+    if (err) {
+      res.send(err);
+      doRelease(connection);
+      return;
+    }
+    connection.execute(`SELECT * FROM franchise WHERE FRANCHISE_ID=${franchiseID}`, [], (err, result) => {
+      if (err) {
+        res.send(err);
+        doRelease(connection);
+        return;
+      }
+      let resultArray = result.rows.map((row) => {
+        let rowObj = {};
+        result.metaData.forEach((item, index) => {
+          let keyName = item.name;
+          rowObj[keyName] = row[index];
+        });
+        return rowObj;
+      });
+      res.send(resultArray);
+      doRelease(connection);
+    });
+  });
+});
+
+
+
 /* POST franchise data. */
 router.post(`/`, (req, res) => {
 
