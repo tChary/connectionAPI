@@ -42,8 +42,8 @@ router.post(`/`, (req, res) => {
 
   let USER_ID = req.body.USER_ID;
 
-  let nameArr = req.body.LAST_NAME.split(`'`);
-  let FIRST_NAME = nameArr.join(`''`);;
+  let nameArr = req.body.FIRST_NAME.split(`'`);
+  let FIRST_NAME = nameArr.join(`''`);
 
   nameArr = req.body.LAST_NAME.split(`'`);
   let LAST_NAME = nameArr.join(`''`);
