@@ -6,7 +6,7 @@ const oracledb = require(`oracledb`);
 
 
 /* GET users listing. */
-router.get(`/`, function (req, res) {
+router.get(`/`, (req, res) => {
   oracledb.getConnection({
     user: dbConfig.dbuser,
     password: dbConfig.dbpassword,
@@ -28,6 +28,9 @@ router.get(`/`, function (req, res) {
     });
   });
 });
+
+/* POST users listing. */
+router.post(`/`, (req, res) => {});
 
 function doRelease(connection) {
   connection.close(
