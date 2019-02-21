@@ -70,7 +70,9 @@ router.post(`/`, (req, res) => {
 
     let insertString = `INSERT INTO users (USER_ID, FIRST_NAME, LAST_NAME, PHONE_NUMBER, HOME_ADDRESS, EMAIL_ADDRESS, TAX_ID, USER_CITY, USER_STATE, USER_ZIP, FRANCHISE_ID) VALUES (${USER_ID}, '${FIRST_NAME}', '${LAST_NAME}', '${PHONE_NUMBER}', '${HOME_ADDRESS}', '${EMAIL_ADDRESS}', ${TAX_ID}, '${USER_CITY}', '${USER_STATE}', ${USER_ZIP}, ${FRANCHISE_ID})`;
 
+    // eslint-disable-next-line no-console
     console.log(`insertString`);
+    // eslint-disable-next-line no-console
     console.log(insertString);
 
     connection.execute(insertString, (err, result) => {
@@ -87,7 +89,7 @@ router.post(`/`, (req, res) => {
         }
         res.send(result);
         doRelease(connection);
-      })
+      });
     });
   });
 });
@@ -96,6 +98,7 @@ function doRelease(connection) {
   connection.close(
     function (err) {
       if (err)
+        // eslint-disable-next-line no-console
         console.error(err.message);
     });
 }

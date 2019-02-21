@@ -73,7 +73,9 @@ router.post(`/`, (req, res) => {
 
     let insertString = `INSERT INTO franchise (FRANCHISE_ID, STREET_ADDRES, ADDR_CITY, ADDR_STATE, ADDR_ZIP, CHAIRS, DECORE_ITEMS, NAPKIN_DISPENSORS, PIZZA_CUTTERS, PIE_TRAYS, OVER_MODEL, VENT_HOOD_MODEL, CUSTOMER_DISHES, KITCHEN_DISHES) VALUES (${FRANCHISE_ID}, '${STREET_ADDRES}', '${ADDR_CITY}', '${ADDR_STATE}', ${ADDR_ZIP}, ${CHAIRS}, ${DECORE_ITEMS}, ${NAPKIN_DISPENSORS}, ${PIZZA_CUTTERS}, ${PIE_TRAYS}, '${OVER_MODEL}', '${VENT_HOOD_MODEL}', ${CUSTOMER_DISHES}, ${KITCHEN_DISHES})`;
 
+    // eslint-disable-next-line no-console
     console.log(`insertString`);
+    // eslint-disable-next-line no-console
     console.log(insertString);
 
     connection.execute(insertString, (err, result) => {
@@ -90,7 +92,7 @@ router.post(`/`, (req, res) => {
         }
         res.send(result);
         doRelease(connection);
-      })
+      });
     });
   });
 });
@@ -100,6 +102,7 @@ function doRelease(connection) {
   connection.close(
     function (err) {
       if (err)
+        // eslint-disable-next-line no-console
         console.error(err.message);
     });
 }
