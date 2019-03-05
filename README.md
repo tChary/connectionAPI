@@ -1,4 +1,6 @@
-# API to allow connections from OIC to ATP.
+# Node to Oracle Autonomous Transaction Processing.
+
+This is a program for allowing you to contact the
 
 Let's try to get the API spec here in this document...
 
