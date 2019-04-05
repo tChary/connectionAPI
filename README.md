@@ -38,7 +38,7 @@ Python 2.7 is very likely to already be on the machine. Check to make sure you h
 
 `$ python --version`
 
-If the version you are seeing is not 2.7.5 or higher, enter this command to install it.
+If you get a message that the python command is not found, or if the version you are seeing is not 2.7.5 or higher, enter this command to install it.
 
 `sudo yum install -y oracle-epel-release-el7 oracle-release-el7`
 
