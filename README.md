@@ -28,9 +28,9 @@ Okay, we're finally ready to get started.
 
 Everything we're doing here is on the command line of the virtual machine unless otherwise noted.
 
-1. Install **Node.js**, **Python 2.7**, **git**, and **libaio**
+1. Install all the necessary software.
 
-Enter this command to install Node.
+Start by installing Node.
 
 `$ sudo yum install nodejs`
 
@@ -46,6 +46,24 @@ Install git
 
 `sudo yum install git`
 
-Finally, install libaio.
+Then, install libaio.
 
 `sudo yum install libaio`
+
+Finally, you need to install the Oracle Instant Client software. You can download it to your local machine from the [Oracle Technology Network](https://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html).
+
+Once you have downloaded the client zip file, copy it to the VM using `scp` or `sftp`
+
+Create a directory on your VM to hold the instant client files.
+
+If you downloaded **instantclient-basic-linux.x64-18.5.0.0.0dbru.zip**, create this directory:
+
+`mkdir  /opt/oracle/instantclient_18_5`
+
+If you downloaded **instantclient-basic-linux.x64-12.2.0.1.0.zip**, create this directory:
+
+`mkdir  /opt/oracle/instantclient_12_2`
+
+Finally, unzip the client zip file in the directory you created.
+
+<<To Be Continued...>>
