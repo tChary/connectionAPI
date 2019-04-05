@@ -18,56 +18,34 @@ This tutorial assumes you have the following:
 
 - An Oracle Autonomous Transaction Processing Database
 - The client credentials (wallet) for the ATP database
+- A VM running Linux, with the ability to update its security access list to open ports. (I've verified these steps on Oracle Cloud Infrastructure (OCI) instance running Oracle Linux 7.6. If you're using a different distro, consult its docs for the proper steps.)
 
+# The Instructions
 
+Okay, we're finally ready to get started. 
 
+0. SSH into your Virtual Machine.
 
------
-POST Request to /franchise
-```
-{
-	"FRANCHISE_ID" : <integer>,
-	"STREET_ADDRES" : <string>,
-	"ADDR_CITY" : <string>,
-	"ADDR_STATE" : <string>,
-	"ADDR_ZIP" : <integer>,
-	"CHAIRS" : <integer>,
-	"DECORE_ITEMS" : <integer>,
-	"NAPKIN_DISPENSORS" : <integer>,
-	"PIZZA_CUTTERS" : <integer>,
-	"PIE_TRAYS" : <integer>,
-	"OVER_MODEL" : <string>,
-	"VENT_HOOD_MODEL" : <string>,
-	"CUSTOMER_DISHES" : <integer>,
-	"KITCHEN_DISHES" : <integer>
-}
-```
-Response:
-```
-{
-    "rowsAffected": 1
-}
-```
------
-POST Request to /users
-```
-{
-	"USER_ID" : <integer>,
-	"FIRST_NAME" : <string>,
-	"LAST_NAME" : <string>,
-	"PHONE_NUMBER" : <string>,
-	"HOME_ADDRESS" : <string>,
-	"EMAIL_ADDRESS" : <string>,
-	"TAX_ID" : <string>,
-	"USER_CITY" : <string>,
-	"USER_STATE" : <string>,
-	"USER_ZIP" : <string>,
-	"FRANCHISE_ID" : <integer>
-}
-```
-Response:
-```
-{
-  "rowsAffected": 1
-}
-```
+Everything we're doing here is on the command line of the virtual machine unless otherwise noted.
+
+1. Install **Node.js**, **Python 2.7**, **git**, and **libaio**
+
+Enter this command to install Node.
+
+`$ sudo yum install nodejs`
+
+Python 2.7 is very likely to already be on the machine. Check to make sure you have the right version by entering this command.
+
+`$ python --version`
+
+If the version you are seeing is not 2.7.5 or higher, enter this command to install it.
+
+`sudo yum install -y oracle-epel-release-el7 oracle-release-el7`
+
+Install git
+
+`sudo yum install git`
+
+Finally, install libaio.
+
+`sudo yum install libaio`
