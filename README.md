@@ -1,8 +1,26 @@
 # Node to Oracle Autonomous Transaction Processing.
 
-This is a program for allowing you to contact the
+### History
 
-Let's try to get the API spec here in this document...
+This project originally started as an API for connecting Oracle Integration Cloud to a Autonomous Transaction Processing database instance for a demo use case involving adding franchise locations to a database.
+
+### Today
+
+This project now exists as a tutorial on how to create a Node application that can connect to an Oracle Autonomous Transaction Processing instance. Whether you need to create a quick REST endpoint for your ATP database or have existing microservices running in Node and want to use ATP for your database.
+
+### Acknowledgments
+
+Credit to [tejuscs](https://github.com/tejuscs) for his [very thorough lab on Autonomous Transaction Processing](https://oracle.github.io/learning-library/workshops/autonomous-transaction-processing/?page=README.md). If you want more information on ATP beyond connecting to a Node app, I highly recommend it.
+
+### Prerequisites
+
+This tutorial assumes you have the following:
+
+- An Oracle Autonomous Transaction Processing Database
+- The client credentials (wallet) for the ATP database
+
+
+
 
 -----
 POST Request to /franchise
