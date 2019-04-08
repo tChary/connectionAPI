@@ -66,4 +66,5 @@ If you downloaded **instantclient-basic-linux.x64-12.2.0.1.0.zip**, create this 
 
 Finally, unzip the client zip file in the directory you created.
 
-<<To Be Continued...>>
+2. Fork and clone this repo.
+
