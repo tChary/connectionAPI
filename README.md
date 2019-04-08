@@ -175,8 +175,50 @@ If you downloaded the 12.2 client, the command will be:
 
 `$ npm install`
 
+6. **Update the code and verify the connection.**
+
+* From the directly where this repo was cloned, go into the `routes/` directory.
+
+`$ cd routes/`
+
+* Open the file `sample.js`, and edit line 21 so that it references one of the tables in your ATP database.
+
+It should start like this:
+
+`let tableName = ''; // ENTER THE NAME OF YOUR TABLE HERE.`
+
+If you had a table named "purchases" in your ATP database, you should edit the linke to look like this:
+
+`let tableName = 'purchases'; // ENTER THE NAME OF YOUR TABLE HERE.`
+
+* Go back to the root directory of the repo, and run the application.
+
+`$ npm start`
+
+* To verify that this is working, copy the web address http://(IP_Address):8888/sample and replace (IP_Address) with the IP address of your VM. 
+
+* With a web browser, the `curl` command, or Postman, open the address. *IMPORTANT: If you are not able to connect at all, make sure that you have opened port 8888 on both the extrenal security list for your VM as well as through the VM's firewall.*
+
+* If you receive a JSON reply listing all of the content from the database table you entered into the code earlier, everything is working correctly.
+
+## Now it's your turn.
+
+You now have a skeleton Node app/Express server that can communicate with your ATP database. You can now take this skeleton and forge it into an API for your database. The [Oracle Database driver for Node.js](https://github.com/oracle/node-oracledb) is very well documented and will guide you through all of the ways you can create, read, update, and destroy data in your ATP database.
+
+
 ### Resources
 
 Oracle Instant Client installation instructions.
 https://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html#ic_x64_inst
 
+Using Oracle Autonomous Transaction Processing - Connect with Python, Node.js, and other Scripting Languages
+https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug/connecting-nodejs.html
+
+Connect Node.js Apps to Autonomous Transaction Processing (video)
+https://www.youtube.com/embed/UG8z94vxYQE?rel=0&autoplay=1
+
+Express 4.x API Documentation
+https://expressjs.com/en/api.html
+
+Oracle Database driver for Node.js maintained by Oracle Corp
+https://github.com/oracle/node-oracledb
